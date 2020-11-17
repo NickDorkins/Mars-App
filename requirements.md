@@ -28,18 +28,18 @@
 - Allow users to see past weather data on Mars.
 
 **Functional Requirements**
-- A user can see photo of the day as the site's background from the APOD API.
+- A user can see a photo of the day as the site's background from the APOD API.
 - A user can see a Mars photo of the day in the body header from the Mars Rover Photos API.
 - A user can view Mars weather for the next 7 sols from the InSight API.
 - A user can view a unique page for each rover that will display their photos. 
 
 **Data Flow (Listed by Page)**
 - Homepage: The homepage will request a random photo from both the APOD and Mars Rover Photos APIs.
-- Individual Rover Pages: Each individual rover page will request photos from the Mars Rover Photos API (specifically the most recent 25). This API will so provide data on the total number of photos taken as well as the total number of Sols that the rover has been active. 
+- Individual Rover Pages: Each individual rover page will request photos from the Mars Rover Photos API (specifically the most recent 25). This API will also provide data on the total number of photos taken as well as the total number of Sols that the rover has been active. 
 - Mars Weather Page: Request the weather for the next 7 Sols from the InSight API. It will display the Earth date and Sol, along with the corresponding high and low temperatures. 
 - About Mars Rovers Page: Static data about the Mars Rovers.
 
 
 **Non-Functional Requirements**
-1. Clean design: This is important because a clean design allows the user to focus on the data being provided. This will be implemented by following the design in our wireframes, choosing legible fonts, and adding a color palette that is both aesthetically pleasing and easy on the eyes. 
+1. Clean design: This is important because a clean design allows the user to focus on the data being provided. This will be implemented by following the design in our wireframes, choosing legible fonts, and adding a color palette that is both aesthetically pleasing.
 2. Photo quality: This is important because photos are the main data type on our app. This will be implemented by tailoring the API call to request the highest quality of photos available. 
