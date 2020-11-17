@@ -26,3 +26,41 @@ APIs: NASA APIs:
 
 - APOD
 
+---
+
+## User Stories
+
+As a User:
+
+- I want a clean looking user friendly app.
+- I want to be up to date on the most recent images from the Surface of Mars. 
+- I want to option of viewing images from a specific rover. (Curiosity, Opportunity, Spirit)
+- I want to know what the weather is like daily on the surface of Mars.
+- I want to be able to save my favorite photos and come back to them later.
+
+As a Developer:
+
+- I want to supply the user with an application that is easy to navigate with clearly labeled links.
+- I want to have the most recent images that are in the NASA database from the surface of Mars. (disclaimer that tells the user that these images come in packages and are not updated daily)
+- I want to provide access to all of the weather data so that the user can look at the different sols and see weather trends.
+- I to allow the user to be able to access images from specific rovers on the surface of Mars.
+- I want the user to be able to store images in a database and be able to recall them later. 
+
+
+## Wireframes
+
+![Homepage Wireframe](img-README/Wireframe-Image-of-the-Day.png)
+![Individual Rover Images Page Wireframe (x3)](img-README/Wireframe-Homepage.png)
+![About Rover Wireframe](img-README/Wireframe-Rover-Images.png)
+![Weather Page Wireframe](img-README/Wireframe-Weather-Page.png)
+
+## Domain Modeling
+
+![Domain Modeling](img-README/Domain-Modeling.png)
+
+## Entity Relationship Diagram
+
+
+![ERD Tables](img-README/ERD-Tables.png)
+
+The Entity Relationship Diagram tables are not related, but are both for the same app.
