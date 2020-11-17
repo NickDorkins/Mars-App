@@ -41,5 +41,5 @@
 
 
 **Non-Functional Requirements**
-1. Clean design: This is important because a clean design allows the user to focus on the data being provided. This will be implemented by following the design in our wireframes, choosing legible fonts, and adding a color palette that is both aesthetically pleasing.
+1. Clean design: This is important because a clean design allows the user to focus on the data being provided. This will be implemented by following the design in our wireframes, choosing legible fonts, and adding a color palette that is aesthetically pleasing.
 2. Photo quality: This is important because photos are the main data type on our app. This will be implemented by tailoring the API call to request the highest quality of photos available. 
