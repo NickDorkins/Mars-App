@@ -32,10 +32,51 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 // Routes
+app.get('/home',homeRoute);
+app.get('/weather', weatherRoute);
+app.get('/error', errorRoute);
+app.get('/rovers/aboutRovers', aboutRoversRoute);
+app.get('/rovers/curiosity', curiosityRoute);
+app.get('/rovers/opportunity',opportunityRoute);
+app.get('/rovers/spirit', spritisRoute);
 
 // Constructors
 
-// Route Handler Functions 
+// Home Handler Functions
+function homeRoute(req, res) {
+        res.render('home');    
+} 
+
+//weather handler function
+function weatherRoute(req, res){
+        res.render('weather');
+}
+
+//error handler function
+function errorRoute(req,res){
+        res.render('error');
+}
+
+//aboutRovers handler function
+function aboutRoversRoute(req, res){
+        console.log('test');
+        res.render('rovers/aboutRovers');
+}
+
+//curiosity handler function
+function curiosityRoute(req, res){
+        res.render('rovers/curiosity');
+}
+
+//opportunity hndler function
+function opportunityRoute(req, res){
+        res.render('rovers/opportunity');
+}
+
+//sprits function handler
+function spritisRoute(req, res){
+        res.render('rovers/spirit');
+}
 
 //Connect to DB
 client.connect();
