@@ -1,16 +1,11 @@
-<!--  home page  -->
-<!-- Image of the Day -->
-<!-- Randomly Generated Background Image -->
-<!-- API: APOD: Astronomy Picture of the Day-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
+  <%- include('../templates/head') %>
 </head>
 <body>
   <header> 
-
+    <%- include('../templates/header') %>
   </header>
   
   <div class="imageOfTheDay">
@@ -20,10 +15,5 @@
   <div class="roverImg">
     <img src="<%= {API CALL} %>" alt="Randomly Generated Image of the Day">
   </div>
-
-  <footer>
-
-  </footer>
-
 </body>
 </html>
