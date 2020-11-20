@@ -3,17 +3,18 @@
 <head>
   <%- include('templates/head') %>
 </head>
-<body>
+<body id="homeBackround">
   <header> 
     <%- include('templates/header') %>
   </header>
   
   <div class="imageOfTheDay">
     <p>Mars Image of the Day: </p>
-  </div>
- 
-  <div class="roverImg">
-    <img src="" alt="Randomly Generated Image of the Day">
+    <img src="<%= output %>">
+  </div> 
+  <div class="imageOfTheDay">
+    <p>NASA Image of the Day: </p>
+    <img src="<%= results %>">
   </div>
 </body>
 </html>
