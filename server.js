@@ -40,19 +40,50 @@ app.get('/rovers/curiosity', curiosityRoute);
 app.get('/rovers/opportunity', opportunityRoute);
 app.get('/rovers/spirit', spiritRoute);
 
-// Constructors
+// app.post('/home', homeMarsPhoto);
 
+
+// Constructors
+function Weather(obj) {
+  this.sol = obj;
+  this.date = obj.First_UTC.slice(9);
+  this.max = obj.AT.mx;
+  this.min = obj.AT.mn;
+  this.avg = obj.AT.av;
+}
 
 // Route Handler Functions 
 function homeRoute(req, res) {
-  res.render('home');
+  let key = process.env.NASA_API;
+  let today = new Date()
+  let days = 86400000
+  let oneDayAgo = new Date(today - (days))
+  oneDayAgo = oneDayAgo.getFullYear() + "-" + (oneDayAgo.getMonth()+1) + "-" + oneDayAgo.getDate();
+  let APODURL = `https://api.nasa.gov/planetary/apod?api_key=${key}&date=${oneDayAgo}`
+  let random = (Math.random() * 2900);
+  random = Math.floor(random);
+  let queryParam = 1;
+  let MARSURL =  `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${random}&api_key=${key}`
+  superagent.get(APODURL)
+  .then(data => {
+  superagent.get(MARSURL)
+  .then(data2 => {
+    console.log(data2.body.photos[0].img_src);
+    res.status(200).render('home', {results: data.body.hdurl, output: data2.body.photos[0].img_src});
+  })
+  })
+  .catch(error => {
+    errorRoute(req, res, error);
+  });
 }
 
 function weatherRoute(req, res) {
+  let key = process.env.NASA_API;
+  let APIURL = `https://api.nasa.gov/insight_weather/?api_key=${key}&feedtype=json&ver=1.0`
   res.render('weather');
 }
 
-function errorRoute(req, res) {
+function errorRoute(req, res, error) {
   res.render('error');
 }
 
@@ -67,6 +98,7 @@ function curiosityRoute(req, res) {
 function opportunityRoute(req, res) {
   res.render('rovers/opportunity');
 }
+
 function spiritRoute(req, res) {
   res.render('rovers/spirit');
 }

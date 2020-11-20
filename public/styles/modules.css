@@ -1,0 +1,9 @@
+/* backgrounds and images */
+#homeBackround {
+  background: url('/images/star-backround.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.imageOfTheDay {
+  overflow: hidden;
+}
