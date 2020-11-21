@@ -1,5 +1,4 @@
-DROP TABLE IF EXISTS rovers;
-DROP TABLE IF EXISTS weather;
+DROP TABLE IF EXISTS favorites;
 
 CREATE TABLE favorites (
   id SERIAL PRIMARY KEY,
@@ -10,11 +9,3 @@ CREATE TABLE favorites (
   camera VARCHAR(255) 
 );
 
-CREATE TABLE weather (
-  id SERIAL PRIMARY KEY,
-  sol INT,
-  date DATE,
-  max FLOAT,
-  min FLOAT,
-  avg FLOAT
-);
