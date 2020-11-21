@@ -10,7 +10,9 @@ CREATE TABLE rovers (
 
 CREATE TABLE weather (
   id SERIAL PRIMARY KEY,
-  sol INT, 
-  tempHigh FLOAT,
-  tempLow FLOAT
+  sol INT,
+  date DATE,
+  max FLOAT,
+  min FLOAT,
+  avg FLOAT
 );
