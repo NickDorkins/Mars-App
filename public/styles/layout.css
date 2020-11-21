@@ -1,0 +1,28 @@
+/* About Rovers Page */
+#aboutRoversCuriosity, #aboutRoversSpirit, #aboutRoversOpportunity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 3em;
+}
+
+.aboutRover, .aboutPics {
+  width: 40%;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+/* header partial */
+#mainHead {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+li {
+  margin: 4em
+}
+
