@@ -16,8 +16,10 @@
     <p>Current sol</p>
   </div>
 
-  <div class="roverImg">
-    <img src="" alt="Most up to date images from Curiosity Rover">
-  </div>
+  <% results.forEach(results => { %>
+    <div>
+     <img src="<%= results.image %>">
+    </div>
+  <% }) %>
 </body>
 </html>

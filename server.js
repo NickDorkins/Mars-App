@@ -39,17 +39,21 @@ app.get('/rovers/aboutRovers', aboutRoversRoute);
 app.get('/rovers/curiosity', curiosityRoute);
 app.get('/rovers/opportunity', opportunityRoute);
 app.get('/rovers/spirit', spiritRoute);
-
-// app.post('/home', homeMarsPhoto);
+app.post('/weather', saveWeatherData);
 
 
 // Constructors
 function Weather(obj) {
-  this.sol = obj;
-  this.date = obj.First_UTC.slice(9);
-  this.max = obj.AT.mx;
-  this.min = obj.AT.mn;
-  this.avg = obj.AT.av;
+  console.log(obj[0]);
+  this.sol = obj[0] ? obj[0] : 'sorry, unable to fetch sol';
+  this.date = obj[1].First_UTC ? obj[1].First_UTC.substring(0,10) : 'sorry, unable to fetch date';
+  this.max = obj[1].AT.mx ? obj[1].AT.mx : 'sorry, unable to fetch max temp';
+  this.min = obj[1].AT.mn ? obj[1].AT.mn : 'sorry, unable to fetch min temp';
+  this.avg = obj[1].AT.av ? obj[1].AT.av: 'sorry, unable to fetch average temp';
+}
+
+function RoverImages(obj) {
+  this.image = obj.img_src ? obj.img_src : 'sorry, this photo is unavailable';
 }
 
 // Route Handler Functions 
@@ -62,13 +66,11 @@ function homeRoute(req, res) {
   let APODURL = `https://api.nasa.gov/planetary/apod?api_key=${key}&date=${oneDayAgo}`
   let random = (Math.random() * 2900);
   random = Math.floor(random);
-  let queryParam = 1;
   let MARSURL =  `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${random}&api_key=${key}`
   superagent.get(APODURL)
   .then(data => {
   superagent.get(MARSURL)
   .then(data2 => {
-    console.log(data2.body.photos[0].img_src);
     res.status(200).render('home', {results: data.body.hdurl, output: data2.body.photos[0].img_src});
   })
   })
@@ -80,7 +82,20 @@ function homeRoute(req, res) {
 function weatherRoute(req, res) {
   let key = process.env.NASA_API;
   let APIURL = `https://api.nasa.gov/insight_weather/?api_key=${key}&feedtype=json&ver=1.0`
-  res.render('weather');
+  let query = 3;
+  superagent.get(APIURL)
+  .query(query)
+  .then(data => {
+    const arrData = Object.entries(data.body);
+    const dataArr = arrData.map(results => {
+      return new Weather(results);
+    })
+    console.log(dataArr);
+    res.status(200).render('weather', {results: dataArr});
+  })
+  .catch(error => {
+    errorRoute(req, res, error);
+  });
 }
 
 function errorRoute(req, res, error) {
@@ -92,15 +107,76 @@ function aboutRoversRoute(req, res) {
 }
 
 function curiosityRoute(req, res) {
-  res.render('rovers/curiosity');
+  let key = process.env.NASA_API;
+  let random = (Math.random() * 2900);
+  random = Math.floor(random);
+  const queryParam = 10;
+  let MARSURL =  `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${random}&api_key=${key}`
+  superagent.get(MARSURL)
+  .query(queryParam)
+  .then(results => {
+    const arrOfPics = results.body.photos.map(results => {
+      return new RoverImages(results);
+    });
+    console.log(arrOfPics);
+    res.status(200).render('rovers/curiosity', {results: arrOfPics});
+  })
+  .catch(error => {
+    errorRoute(req, res, error);
+  });
 }
 
+
 function opportunityRoute(req, res) {
-  res.render('rovers/opportunity');
+  let key = process.env.NASA_API;
+  let random = (Math.random() * 2900);
+  random = Math.floor(random);
+  const queryParam = 10;
+  let MARSURL =  `https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?sol=${random}&api_key=${key}`
+  superagent.get(MARSURL)
+  .query(queryParam)
+  .then(results => {
+    const arrOfPics = results.body.photos.map(results => {
+      return new RoverImages(results);
+    });
+    console.log(arrOfPics);
+    res.status(200).render('rovers/opportunity', {results: arrOfPics});
+  })
+  .catch(error => {
+    errorRoute(req, res, error);
+  });
 }
 
 function spiritRoute(req, res) {
-  res.render('rovers/spirit');
+  let key = process.env.NASA_API;
+  let random = (Math.random() * 2900);
+  random = Math.floor(random);
+  const queryParam = 10;
+  let MARSURL =  `https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?sol=${random}&api_key=${key}`
+  superagent.get(MARSURL)
+  .query(queryParam)
+  .then(results => {
+    const arrOfPics = results.body.photos.map(results => {
+      return new RoverImages(results);
+    });
+    console.log(arrOfPics);
+    res.status(200).render('rovers/spirit', {results: arrOfPics});
+  })
+  .catch(error => {
+    errorRoute(req, res, error);
+  });
+}
+
+function saveWeatherData(req, res) {
+  const sql = `INSERT INTO weather (sol, date, max, min, avg) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+
+  client.query(sql)
+    .then(data => {
+      res.status(200).redirect('weather');
+    })
+    .catch(error => {
+      errorRoute(req, res, error);
+    });
 }
 
 //Connect to DB

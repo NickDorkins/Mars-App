@@ -9,11 +9,16 @@
   </header>
   
   <div class="weather">
-    <p> Weather on Mars: </p>
+    <p> Latest Weather Data at Elysium Planitia, Mars: </p>
   </div>
- 
-  <div class="roverImg">
-    <img src="" alt="7 sol weather forcast on the surface of Mars">
-  </div>
+  <% results.forEach(results => { %>
+    <div>
+     <h2><%= results.sol %></h2>
+     <h2><%= results.date %></h2>
+     <h3><%= results.max %></h3>
+     <h3><%= results.min %></h3>
+     <h3><%= results.avg %></h3>
+    </div>
+  <% }) %>
 </body>
 </html>
