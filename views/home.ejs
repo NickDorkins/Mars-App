@@ -7,10 +7,27 @@
   <header> 
     <%- include('templates/header') %>
   </header>
-  
+  <div class="randomize">
+    <button><a href="/home">Randomize New Rover Photo</a></button>
+  </div>
   <div class="imageOfTheDay">
-    <p>Mars Image of the Day: </p>
-    <img src="<%= output %>">
+    <% results2.forEach(results => { %>
+      <div class="roverPics">
+       <img src="<%= results.image %>">
+       <h2>Rover Name: <%= results.name %></h2>
+       <h2>Sol: <%= results.sol %></h2>
+       <h2>Earth Date: <%= results.date %></h2>
+       <h2>Camera Name: <%= results.camera %></h2>
+      </div>
+      <form action="/roversHome" method="POST">
+        <input type="hidden" name="image" value="<%= results.image %>"/>
+        <input type="hidden" name="name" value="<%= results.name %>"/>
+        <input type="hidden" name="sol" value="<%= results.sol %>"/>
+        <input type="hidden" name="date" value="<%= results.date %>"/>
+        <input type="hidden" name="camera" value="<%= results.camera %>"/>
+        <button type="submit">Add to Favorites</button>
+      </form>
+    <% }) %>
   </div> 
   <div class="imageOfTheDay">
     <p>NASA Image of the Day: </p>

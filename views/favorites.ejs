@@ -7,14 +7,19 @@
   <header> 
     <%- include('templates/header') %>
   </header>
+  <h1>Total Photos: <%= results.length%></h1>
   <% results.forEach(results => { %>
     <div class="roverPics">
+     <input type="hidden" name="id" value="<%= results.id %>"/>
      <img src="<%= results.image %>">
      <h2>Rover Name: <%= results.name %></h2>
      <h2>Sol: <%= results.sol %></h2>
      <h2>Earth Date: <%= results.date %></h2>
      <h2>Camera Name: <%= results.camera %></h2>
     </div>
+    <form action="/delete/<%=results.id%>?_method=DELETE" method="post">
+      <button>Remove From Favorites</button>
+    </form>
   <% }) %>
 </body>
 </html>

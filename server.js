@@ -45,9 +45,9 @@ app.get('/rovers/curiosity', curiosityRoute);
 app.get('/rovers/opportunity', opportunityRoute);
 app.get('/rovers/spirit', spiritRoute);
 app.get('/favorites', getFavs);
-app.post('/weather', saveWeatherData);
 app.post('/rovers', addToFavs);
-
+app.post('/roversHome', addToFavsHome);
+app.delete('/delete/:id', removeFav);
 
 // Constructors
 function Weather(obj) {
@@ -74,27 +74,34 @@ function homeRoute(req, res) {
   let oneDayAgo = new Date(today - (days))
   oneDayAgo = oneDayAgo.getFullYear() + "-" + (oneDayAgo.getMonth()+1) + "-" + oneDayAgo.getDate();
   let APODURL = `https://api.nasa.gov/planetary/apod?api_key=${key}&date=${oneDayAgo}`
-  let random = (Math.random() * 2900);
+  let random = (Math.random() * 2000);
   random = Math.floor(random);
-  let MARSURL =  `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${random}&api_key=${key}`
+  let roverArr = ['curiosity', 'opportunity', 'spirit'];
+  let random2 = (Math.random() * 3);
+  random2 = Math.floor(random2);
+  let MARSURL =  `https://api.nasa.gov/mars-photos/api/v1/rovers/${roverArr[random2]}/photos?sol=${random}&api_key=${key}`
   superagent.get(APODURL)
   .then(data => {
   superagent.get(MARSURL)
   .then(data2 => {
-    res.status(200).render('home', {results: data.body.hdurl, output: data2.body.photos[0].img_src});
-  })
+    data2.body.photos.length = 1;
+    let roverData = data2.body.photos.map(results => {
+      return new RoverImages(results);
+    }) 
+    console.log(data.body.hdurl);
+    res.status(200).render('home', {results: data.body.hdurl, results2: roverData});
   })
   .catch(error => {
     errorRoute(req, res, error);
   });
+})
 }
+
 
 function weatherRoute(req, res) {
   let key = process.env.NASA_API;
   let APIURL = `https://api.nasa.gov/insight_weather/?api_key=${key}&feedtype=json&ver=1.0`
-  const max = 2;
   superagent.get(APIURL)
-  .query(max)
   .then(data => {
     const arrData = Object.entries(data.body);
     arrData.length = 7;
@@ -124,7 +131,7 @@ function curiosityRoute(req, res) {
   let MARSURL =  `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${random}&api_key=${key}`
   superagent.get(MARSURL)
   .then(results => {
-    results.body.photos.length = 10;
+    results.body.photos.length = 1;
     const arrOfPics = results.body.photos.map(results => {
       return new RoverImages(results);
     });
@@ -142,7 +149,7 @@ function opportunityRoute(req, res) {
   let MARSURL =  `https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?sol=${random}&api_key=${key}`
   superagent.get(MARSURL)
   .then(results => {
-    results.body.photos.length = 10;
+    results.body.photos.length = 1;
     const arrOfPics = results.body.photos.map(results => {
       return new RoverImages(results);
     });
@@ -160,7 +167,7 @@ function spiritRoute(req, res) {
   let MARSURL =  `https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?sol=${random}&api_key=${key}`
   superagent.get(MARSURL)
   .then(results => {
-    results.body.photos.length = 10;
+    results.body.photos.length = 1;
     const arrOfPics = results.body.photos.map(results => {
       return new RoverImages(results);
     });
@@ -188,7 +195,18 @@ function addToFavs(req, res) {
   client.query(sql, params)
     .then(data => {
       res.status(200).redirect(`/rovers/${req.body.name}`);
-      console.log(req.body.name);
+    })
+    .catch(error => {
+      errorRoute(req, res, error);
+    });
+}
+
+function addToFavsHome(req, res) {
+  const sql =  `INSERT INTO favorites (name, image, sol, date, camera) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+  const params = [req.body.name, req.body.image, req.body.sol, req.body.date, req.body.camera];
+  client.query(sql, params)
+    .then(data => {
+      res.status(200).redirect('home');
     })
     .catch(error => {
       errorRoute(req, res, error);
@@ -204,6 +222,22 @@ function getFavs(req, res) {
     .catch(error => {
       errorRoute(req, res, error);
     });
+}
+
+function removeFav(req, res) {
+  const sql = 'DELETE FROM favorites WHERE id = $1';
+  const params = [req.params.id];
+  const sql2 = ` SELECT * FROM favorites`;
+  return client.query(sql, params)
+    .then(() => {
+      return client.query(sql2)
+      .then(results => {
+        res.status(200).render('favorites', {results: results.rows})
+    })
+    .catch(error => {
+      errorRoute(req, res, error);
+    });
+})
 }
 
 //Connect to DB
