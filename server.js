@@ -44,15 +44,17 @@ app.post('/weather', saveWeatherData);
 
 // Constructors
 function Weather(obj) {
-  console.log(obj[0]);
   this.sol = obj[0] ? obj[0] : 'sorry, unable to fetch sol';
   this.date = obj[1].First_UTC ? obj[1].First_UTC.substring(0,10) : 'sorry, unable to fetch date';
   this.max = obj[1].AT.mx ? obj[1].AT.mx : 'sorry, unable to fetch max temp';
   this.min = obj[1].AT.mn ? obj[1].AT.mn : 'sorry, unable to fetch min temp';
-  this.avg = obj[1].AT.av ? obj[1].AT.av: 'sorry, unable to fetch average temp';
+  this.avg = obj[1].AT.av ? obj[1].AT.av : 'sorry, unable to fetch average temp';
 }
 
 function RoverImages(obj) {
+  this.sol = obj.sol;
+  this.date = obj.earth_date;
+  this.camera = obj.camera.full_name;
   this.image = obj.img_src ? obj.img_src : 'sorry, this photo is unavailable';
 }
 
@@ -82,15 +84,15 @@ function homeRoute(req, res) {
 function weatherRoute(req, res) {
   let key = process.env.NASA_API;
   let APIURL = `https://api.nasa.gov/insight_weather/?api_key=${key}&feedtype=json&ver=1.0`
-  let query = 3;
+  const max = 2;
   superagent.get(APIURL)
-  .query(query)
+  .query(max)
   .then(data => {
     const arrData = Object.entries(data.body);
     const dataArr = arrData.map(results => {
+      // console.log(new Weather(results));
       return new Weather(results);
     })
-    console.log(dataArr);
     res.status(200).render('weather', {results: dataArr});
   })
   .catch(error => {
@@ -110,15 +112,12 @@ function curiosityRoute(req, res) {
   let key = process.env.NASA_API;
   let random = (Math.random() * 2900);
   random = Math.floor(random);
-  const queryParam = 10;
   let MARSURL =  `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${random}&api_key=${key}`
   superagent.get(MARSURL)
-  .query(queryParam)
   .then(results => {
     const arrOfPics = results.body.photos.map(results => {
       return new RoverImages(results);
     });
-    console.log(arrOfPics);
     res.status(200).render('rovers/curiosity', {results: arrOfPics});
   })
   .catch(error => {
@@ -126,10 +125,9 @@ function curiosityRoute(req, res) {
   });
 }
 
-
 function opportunityRoute(req, res) {
   let key = process.env.NASA_API;
-  let random = (Math.random() * 2900);
+  let random = (Math.random() * 5352);
   random = Math.floor(random);
   const queryParam = 10;
   let MARSURL =  `https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?sol=${random}&api_key=${key}`
@@ -139,7 +137,6 @@ function opportunityRoute(req, res) {
     const arrOfPics = results.body.photos.map(results => {
       return new RoverImages(results);
     });
-    console.log(arrOfPics);
     res.status(200).render('rovers/opportunity', {results: arrOfPics});
   })
   .catch(error => {
@@ -149,7 +146,7 @@ function opportunityRoute(req, res) {
 
 function spiritRoute(req, res) {
   let key = process.env.NASA_API;
-  let random = (Math.random() * 2900);
+  let random = (Math.random() * 2208);
   random = Math.floor(random);
   const queryParam = 10;
   let MARSURL =  `https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?sol=${random}&api_key=${key}`
@@ -159,7 +156,6 @@ function spiritRoute(req, res) {
     const arrOfPics = results.body.photos.map(results => {
       return new RoverImages(results);
     });
-    console.log(arrOfPics);
     res.status(200).render('rovers/spirit', {results: arrOfPics});
   })
   .catch(error => {
