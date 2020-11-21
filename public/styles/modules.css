@@ -7,3 +7,21 @@
 .imageOfTheDay {
   overflow: hidden;
 }
+
+.roverPics {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin-bottom: 3em;
+}
+
+/* Buttons */
+
+.randomize {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3em;
+}

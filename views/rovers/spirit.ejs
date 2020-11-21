@@ -7,18 +7,15 @@
   <header> 
     <%- include('../templates/header') %>
   </header>
-  
-  <div class="roverTotal">
-    <p>Total Photos From Rover</p>
+  <div class="randomize">
+  <button><a href="/rovers/spirit">Randomize New Sol</a></button>
   </div>
-  
-  <div class="roverSol">
-    <p>Current sol</p>
-  </div>
-
   <% results.forEach(results => { %>
-    <div>
+    <div class="roverPics">
      <img src="<%= results.image %>">
+     <h2>Sol: <%= results.sol %></h2>
+     <h2>Earth Date: <%= results.date %></h2>
+     <h2>Camera Name: <%= results.camera %></h2>
     </div>
   <% }) %>
 </body>

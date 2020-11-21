@@ -4,6 +4,7 @@
   <%- include('templates/head') %>
 </head>
 <body>
+  <main>
   <header> 
     <%- include('templates/header') %>
   </header>
@@ -11,14 +12,15 @@
   <div class="weather">
     <p> Latest Weather Data at Elysium Planitia, Mars: </p>
   </div>
-  <% results.forEach(results => { %>
-    <div>
-     <h2><%= results.sol %></h2>
-     <h2><%= results.date %></h2>
-     <h3><%= results.max %></h3>
-     <h3><%= results.min %></h3>
-     <h3><%= results.avg %></h3>
-    </div>
-  <% }) %>
+  <% results.forEach(results => { %>
+        <div>
+         <h2><%= results.sol %></h2>
+         <h2><%= results.date %></h2>
+         <h3><%= results.max %></h3>
+         <h3><%= results.min %></h3>
+         <h3><%= results.avg %></h3>
+        </div>
+      <% }) %>
+</main>
 </body>
 </html>
