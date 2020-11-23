@@ -7,7 +7,7 @@
   <header> 
     <%- include('templates/header') %>
   </header>
-  <h1>Total Photos: <%= results.length%></h1>
+  <h1 class="pageHead">Total Photos: <%= results.length%></h1>
   <% results.forEach(results => { %>
     <div class="roverPics">
      <input type="hidden" name="id" value="<%= results.id %>"/>

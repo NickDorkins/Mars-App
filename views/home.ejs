@@ -25,13 +25,15 @@
         <input type="hidden" name="sol" value="<%= results.sol %>"/>
         <input type="hidden" name="date" value="<%= results.date %>"/>
         <input type="hidden" name="camera" value="<%= results.camera %>"/>
+        <div class="addFavButton">
         <button type="submit">Add to Favorites</button>
+      </div>
       </form>
     <% }) %>
   </div> 
-  <div class="imageOfTheDay">
-    <p>NASA Image of the Day: </p>
-    <img src="<%= results %>">
+  <div>
+    <h1 class="imageOfDayTitle">NASA Image of the Day: </h1> 
+    <img class="imageOfTheDay" src="<%= results %>">
   </div>
 </body>
 </html>
