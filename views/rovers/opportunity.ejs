@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../templates/head') %>
+</head>
+<body class="opportunity_body, background">
+  
+    <%- include('../templates/header') %>
+  
+  <div class="randomize">
+    <button class="randomize_button"><a href="/rovers/opportunity">Randomize New Sol</a></button>
+  </div>
+  <% results.forEach(results => { %>
+    <div class="roverPics">
+     <img class="roverPic" src="<%= results.image %>">
+     <h2>Rover Name: <%= results.name %></h2>
+     <h2>Sol: <%= results.sol %></h2>
+     <h2>Earth Date: <%= results.date %></h2>
+     <h2>Camera Name: <%= results.camera %></h2>
+    </div>
+    <form action="/rovers" method="POST">
+      <input type="hidden" name="image" value="<%= results.image %>"/>
+      <input type="hidden" name="name" value="<%= results.name %>"/>
+      <input type="hidden" name="sol" value="<%= results.sol %>"/>
+      <input type="hidden" name="date" value="<%= results.date %>"/>
+      <input type="hidden" name="camera" value="<%= results.camera %>"/>
+      <div class="spirit_button"><button type="submit">Add to Favorites</button></div>
+    </form>
+  <% }) %>
+
+</body>
+</html>

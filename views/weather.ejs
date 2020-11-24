@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('templates/head') %>
+</head>
+<body id="weatherBackColor" class="background">
+  <header> 
+    <%- include('templates/header') %>
+  </header>
+  <div class="weather">
+    <h1 class="pageHead"> Most Recent Weather on Mars (at Elysium Planitia): </h1>
+    <h2 class="pageHead">Data provided by NASA's Insights API</h2>
+  </div>
+  <main id="weatherBack">
+    <div id="allWeatherBlocks">
+  <% results.forEach(results => { %>
+        <div id="weatherBlock">
+         <h2><strong>Sol:</strong> <%= results.sol %></h2>
+         <h2><strong>Date:</strong> <%= results.date %></h2>
+         <h3><strong>Max Temp:</strong> <%= results.max %>&#8451;</h3>
+         <h3><strong>Min Temp:</strong> <%= results.min %>&#8451;</h3>
+         <h3><strong>Average Temp:</strong> <%= results.avg %>&#8451;</h3>
+        </div>
+      <% }) %>
+  </div>
+  </main>
+</body>
+</html>

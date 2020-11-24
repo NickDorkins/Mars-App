@@ -1,0 +1,79 @@
+/* About Rovers Page */
+#aboutRoversCuriosity, #aboutRoversSpirit, #aboutRoversOpportunity {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 3em;
+}
+
+.aboutRover, .aboutPics {
+  width: 40%;
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+}
+
+/* header partial */
+#mainHead {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+li {
+  margin: 4em
+}
+
+/* Weather page */
+
+.pageHead { 
+  text-align: center;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+#weatherBackColor {
+  background-color: #934838
+}
+
+/* home page */
+.imageOfDayTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5em;
+  color: white;
+}
+
+
+.imageOfTheDay {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin-bottom: 4em;
+}  
+ 
+.roverPicInfo {
+font-size: xx-large;
+ color: white;
+}
+
+.roverInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.randomizeLink {
+  text-decoration: none;
+  color: black;
+}
+
+
