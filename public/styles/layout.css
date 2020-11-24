@@ -38,7 +38,9 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
 }
+
 
 .imageOfTheDay {
   display: block;
@@ -46,4 +48,8 @@ li {
   margin-right: auto;
   width: 50%;
   margin-bottom: 4em;
+}  
+ 
+.roverPicInfo {
+ color: white;
 }
