@@ -3,12 +3,12 @@
 <head>
   <%- include('../templates/head') %>
 </head>
-<body>
-  <header> 
+<body class="opportunity_body">
+  
     <%- include('../templates/header') %>
-  </header>
+  
   <div class="randomize">
-    <button><a href="/rovers/opportunity">Randomize New Sol</a></button>
+    <button class="randomize_button"><a href="/rovers/opportunity">Randomize New Sol</a></button>
   </div>
   <% results.forEach(results => { %>
     <div class="roverPics">
@@ -24,7 +24,7 @@
       <input type="hidden" name="sol" value="<%= results.sol %>"/>
       <input type="hidden" name="date" value="<%= results.date %>"/>
       <input type="hidden" name="camera" value="<%= results.camera %>"/>
-      <button type="submit">Add to Favorites</button>
+      <div class="spirit_button"><button type="submit">Add to Favorites</button></div>
     </form>
   <% }) %>
 

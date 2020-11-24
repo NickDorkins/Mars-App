@@ -4,9 +4,9 @@
   <%- include('../templates/head') %>
 </head>
 <body>
-  <header> 
+  
     <%- include('../templates/header') %>
-  </header>
+  
   <div class="randomize">
     <button><a href="/rovers/curiosity">Randomize New Sol</a></button>
   </div>
@@ -24,7 +24,7 @@
       <input type="hidden" name="sol" value="<%= results.sol %>"/>
       <input type="hidden" name="date" value="<%= results.date %>"/>
       <input type="hidden" name="camera" value="<%= results.camera %>"/>
-      <button type="submit">Add to Favorites</button>
+      <div class="curiosity_button"><button type="submit">Add to Favorites</button></div>
     </form>
   <% }) %>
 </body>

@@ -46,6 +46,8 @@
   border: .3em solid black;
   padding: 1em;
   margin-top: 15%;
+  /* color: greenyellow; */
+  color: yellow;
 }
 
 #allWeatherBlocks {

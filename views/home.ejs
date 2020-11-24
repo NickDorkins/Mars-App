@@ -14,10 +14,10 @@
     <% results2.forEach(results => { %>
       <div class="roverPics">
        <img src="<%= results.image %>">
-       <h2>Rover Name: <%= results.name %></h2>
-       <h2>Sol: <%= results.sol %></h2>
-       <h2>Earth Date: <%= results.date %></h2>
-       <h2>Camera Name: <%= results.camera %></h2>
+       <h2 class="roverPicInfo" >Rover Name: <%= results.name %></h2>
+       <h2 class="roverPicInfo" >Sol: <%= results.sol %></h2>
+       <h2 class="roverPicInfo" >Earth Date: <%= results.date %></h2>
+       <h2 class="roverPicInfo" >Camera Name: <%= results.camera %></h2>
       </div>
       <form action="/roversHome" method="POST">
         <input type="hidden" name="image" value="<%= results.image %>"/>
