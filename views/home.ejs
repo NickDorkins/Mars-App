@@ -3,21 +3,21 @@
 <head>
   <%- include('templates/head') %>
 </head>
-<body id="homeBackround">
+<body class="background">
   <header> 
     <%- include('templates/header') %>
   </header>
-  <div class="randomize">
-    <button><a href="/home">Randomize New Rover Photo</a></button>
-  </div>
-  <div class="imageOfTheDay">
+  <h1 class="imageOfDayTitle">Randomized Rover Image: </h1>
+  <div>
     <% results2.forEach(results => { %>
-      <div class="roverPics">
-       <img src="<%= results.image %>">
-       <h2 class="roverPicInfo" >Rover Name: <%= results.name %></h2>
-       <h2 class="roverPicInfo" >Sol: <%= results.sol %></h2>
-       <h2 class="roverPicInfo" >Earth Date: <%= results.date %></h2>
-       <h2 class="roverPicInfo" >Camera Name: <%= results.camera %></h2>
+      <div>
+       <img class="roverPicsHome" src="<%= results.image %>">
+      </div>
+      <div class="roverInfo">
+       <h2 class="roverPicInfo"><strong>Rover Name:</strong> <%= results.name %></h2>
+       <h2 class="roverPicInfo"><strong>Sol:</strong> <%= results.sol %></h2>
+       <h2 class="roverPicInfo"><strong>Earth Date:</strong> <%= results.date %></h2>
+       <h2 class="roverPicInfo"><strong>Camera Name:</strong> <%= results.camera %></h2>
       </div>
       <form action="/roversHome" method="POST">
         <input type="hidden" name="image" value="<%= results.image %>"/>
@@ -26,6 +26,9 @@
         <input type="hidden" name="date" value="<%= results.date %>"/>
         <input type="hidden" name="camera" value="<%= results.camera %>"/>
         <div class="addFavButton">
+        <div class="randomize">
+          <button><a class="randomizeLink" href="/home">Randomize New Rover Photo</a></button>
+        </div>
         <button type="submit">Add to Favorites</button>
       </div>
       </form>

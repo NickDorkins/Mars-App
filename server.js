@@ -88,7 +88,6 @@ function homeRoute(req, res) {
     let roverData = data2.body.photos.map(results => {
       return new RoverImages(results);
     }) 
-    console.log(data.body.hdurl);
     res.status(200).render('home', {results: data.body.hdurl, results2: roverData});
   })
   .catch(error => {
@@ -106,7 +105,6 @@ function weatherRoute(req, res) {
     const arrData = Object.entries(data.body);
     arrData.length = 6;
     const dataArr = arrData.map(results => {
-      // console.log(new Weather(results));
       return new Weather(results);
     })
     res.status(200).render('weather', {results: dataArr});
