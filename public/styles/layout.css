@@ -26,3 +26,24 @@ li {
   margin: 4em
 }
 
+/* Weather page */
+
+.pageHead { 
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+/* home page */
+.imageOfDayTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageOfTheDay {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin-bottom: 4em;
+}

@@ -4,23 +4,25 @@
   <%- include('templates/head') %>
 </head>
 <body>
-  <main>
   <header> 
     <%- include('templates/header') %>
   </header>
-  
   <div class="weather">
-    <p> Latest Weather Data at Elysium Planitia, Mars: </p>
+    <h1 class="pageHead"> Most Recent Weather on Mars (at Elysium Planitia): </h1>
+    <h3 class="pageHead">Data provided by NASA's Insights API</h3>
   </div>
+  <main id="weatherBack">
+    <div id="allWeatherBlocks">
   <% results.forEach(results => { %>
-        <div>
-         <h2><%= results.sol %></h2>
-         <h2><%= results.date %></h2>
-         <h3><%= results.max %></h3>
-         <h3><%= results.min %></h3>
-         <h3><%= results.avg %></h3>
+        <div id="weatherBlock">
+         <h2><strong>Sol:</strong> <%= results.sol %></h2>
+         <h2><strong>Date:</strong> <%= results.date %></h2>
+         <h3><strong>Max Temp:</strong> <%= results.max %>&#8451;</h3>
+         <h3><strong>Min Temp:</strong> <%= results.min %>&#8451;</h3>
+         <h3><strong>Average Temp:</strong> <%= results.avg %>&#8451;</h3>
         </div>
       <% }) %>
-</main>
+  </div>
+  </main>
 </body>
 </html>

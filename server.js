@@ -51,19 +51,19 @@ app.delete('/delete/:id', removeFav);
 
 // Constructors
 function Weather(obj) {
-  this.sol = obj[0] ? obj[0] : 'sorry, unable to fetch this sol';
-  this.date = obj[1].First_UTC ? obj[1].First_UTC.substring(0,10) : 'sorry, unable to fetch this date';
-  this.max = obj[1].AT ? obj[1].AT.mx : 'sorry, unable to fetch max temp for this day';
-  this.min = obj[1].AT ? obj[1].AT.mn : 'sorry, unable to fetch min temp for this day';
-  this.avg = obj[1].AT ? obj[1].AT.av : 'sorry, unable to fetch average temp for this day';
+  this.sol = obj[0] ? obj[0] : 'Sorry, unable to fetch this sol';
+  this.date = obj[1].First_UTC ? obj[1].First_UTC.substring(0,10) : 'Sorry, unable to fetch this date';
+  this.max = obj[1].AT ? obj[1].AT.mx : 'Unknown';
+  this.min = obj[1].AT ? obj[1].AT.mn : 'Unknown';
+  this.avg = obj[1].AT ? obj[1].AT.av : 'Unknown';
 }
 
 function RoverImages(obj) {
   this.image = obj.img_src ? obj.img_src : 'sorry, this photo is unavailable';
   this.name = obj.rover.name ? obj.rover.name : 'sorry, no rover name available';
-  this.sol = obj.sol? obj.sol : 'sorry, unable to fetch sol';
-  this.date = obj.earth_date? obj.earth_date : 'sorry, unable to fetch Earth date';
-  this.camera = obj.camera.full_name? obj.camera.full_name : 'sorry, unable to identify camera name';
+  this.sol = obj.sol ? obj.sol : 'sorry, unable to fetch sol';
+  this.date = obj.earth_date ? obj.earth_date : 'sorry, unable to fetch Earth date';
+  this.camera = obj.camera.full_name ? obj.camera.full_name : 'sorry, unable to identify camera name';
 }
 
 // Route Handler Functions 
@@ -104,7 +104,7 @@ function weatherRoute(req, res) {
   superagent.get(APIURL)
   .then(data => {
     const arrData = Object.entries(data.body);
-    arrData.length = 7;
+    arrData.length = 6;
     const dataArr = arrData.map(results => {
       // console.log(new Weather(results));
       return new Weather(results);
@@ -176,17 +176,6 @@ function spiritRoute(req, res) {
   .catch(error => {
     errorRoute(req, res, error);
   });
-}
-
-function saveWeatherData(req, res) {
-  const sql = `INSERT INTO weather (sol, date, max, min, avg) VALUES ($1, $2, $3, $4, $5) RETURNING *`;
-  client.query(sql)
-    .then(data => {
-      res.status(200).redirect('weather');
-    })
-    .catch(error => {
-      errorRoute(req, res, error);
-    });
 }
 
 function addToFavs(req, res) {
