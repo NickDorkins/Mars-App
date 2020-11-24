@@ -1,7 +1,21 @@
-
 h1 {
   font-weight: bolder;
-  font-size: x-large;
+  font-size: xx-large;
+  color: white;
+}
+
+h2 {
+  font-size: large;
+  color: white;
+}
+
+button {
+  font-size: 25px;
+  padding: 8px;
+}
+
+button:hover {
+  background-color: coral;
 }
 
 strong {
@@ -43,7 +57,7 @@ strong {
 .roverPics img {
   padding:1px;
   border:1px solid #021a40;
-  width: 500px;
+  width: 600px;
 }
 .spirint_button {
   text-align: center; 
@@ -61,7 +75,8 @@ strong {
 
 }
 #mainHead >li {
-  background-color: blanchedalmond;
+  background: url('/images/Marsbanner.jpg') no-repeat; 
+  background-position: center;
   border: 1px solid black;
   text-align: center;
   height: 70px;
@@ -73,6 +88,15 @@ strong {
 }
 #mainHead >#home_link  {
   flex-basis: 30%;
+}
+
+.head {
+  text-shadow: rgb(255, 196, 0) 0px 0px 10px;
+  opacity: 1;
+  text-decoration: none;
+  color: black;
+  font-size: x-large;
+  font-weight: bolder;
 }
 /*about opportunity page*/
 .opportunity_body {

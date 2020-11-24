@@ -11,7 +11,7 @@
 
 .aboutRover, .aboutPics {
   width: 40%;
-  margin-top: 2em;
+  margin-top: 1.5em;
   margin-bottom: 1em;
 }
 
@@ -30,7 +30,12 @@ li {
 
 .pageHead { 
   text-align: center;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+#weatherBackColor {
+  background-color: #934838
 }
 
 /* home page */
@@ -38,6 +43,7 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 1.5em;
   color: white;
 }
 
@@ -51,5 +57,23 @@ li {
 }  
  
 .roverPicInfo {
+font-size: xx-large;
  color: white;
 }
+
+.roverInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.randomizeLink {
+  text-decoration: none;
+  color: black;
+}
+
+

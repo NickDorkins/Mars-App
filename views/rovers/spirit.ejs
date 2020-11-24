@@ -3,14 +3,14 @@
 <head>
   <%- include('../templates/head') %>
 </head>
-<body class="spirit_body"> 
+<body class="spirit_body, background"> 
     <%- include('../templates/header') %>
   <div class="randomize">
   <button class="randomize_button"><a href="/rovers/spirit">Randomize New Sol</a></button>
   </div>
   <% results.forEach(results => { %>
     <div class="roverPics">
-     <img src="<%= results.image %>">
+     <img class="roverPic" src="<%= results.image %>">
      <h2>Rover Name: <%= results.name %></h2>
      <h2>Sol: <%= results.sol %></h2>
      <h2>Earth Date: <%= results.date %></h2>
