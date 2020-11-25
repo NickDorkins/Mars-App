@@ -5,16 +5,19 @@
 </head>
 <body class="spirit_body, background"> 
     <%- include('../templates/header') %>
+  <h1 class="pageTitle">Spirit Rover Photo Generator</h1>
   <div class="randomize">
   <button class="randomize_button"><a href="/rovers/spirit">Randomize New Sol</a></button>
   </div>
   <% results.forEach(results => { %>
     <div class="roverPics">
+      <div class="imgContain">
      <img class="roverPic" src="<%= results.image %>">
-     <h2>Rover Name: <%= results.name %></h2>
-     <h2>Sol: <%= results.sol %></h2>
-     <h2>Earth Date: <%= results.date %></h2>
-     <h2>Camera Name: <%= results.camera %></h2>
+    </div>
+     <h2 class="roverPicInfo"><strong>Rover Name:</strong> <%= results.name %></h2>
+     <h2 class="roverPicInfo"><strong>Sol:</strong> <%= results.sol %></h2>
+     <h2 class="roverPicInfo"><strong>Earth Date:</strong> <%= results.date %></h2>
+     <h2 class="roverPicInfo"><strong>Camera Name:</strong> <%= results.camera %></h2>
     </div>
     <form action="/rovers" method="POST">
       <input type="hidden" name="image" value="<%= results.image %>"/>
@@ -22,7 +25,7 @@
       <input type="hidden" name="sol" value="<%= results.sol %>"/>
       <input type="hidden" name="date" value="<%= results.date %>"/>
       <input type="hidden" name="camera" value="<%= results.camera %>"/>
-      <div class="spirit_button"><button type="submit">Add to Favorites</button></div>
+      <div class="favRoverButt"><button type="submit">Add to Favorites</button></div>
     </form>
   <% }) %>
 </body>

@@ -37,7 +37,7 @@ app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
 
 // Routes
-app.get('/home', homeRoute);
+app.get('/', homeRoute);
 app.get('/weather', weatherRoute);
 app.get('/error', errorRoute);
 app.get('/rovers/aboutRovers', aboutRoversRoute);
@@ -193,7 +193,7 @@ function addToFavsHome(req, res) {
   const params = [req.body.name, req.body.image, req.body.sol, req.body.date, req.body.camera];
   client.query(sql, params)
     .then(data => {
-      res.status(200).redirect('home');
+      res.status(200).redirect('/');
     })
     .catch(error => {
       errorRoute(req, res, error);

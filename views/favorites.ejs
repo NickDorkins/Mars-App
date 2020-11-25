@@ -7,18 +7,23 @@
   <header> 
     <%- include('templates/header') %>
   </header>
+  <h1 class="pageTitle">Favorite Photos</h1>
   <h1 class="pageHead">Total Photos: <%= results.length%></h1>
   <% results.forEach(results => { %>
     <div class="roverPics">
      <input type="hidden" name="id" value="<%= results.id %>"/>
+     <div class="imgContain"> 
      <img src="<%= results.image %>">
-     <h2>Rover Name: <%= results.name %></h2>
-     <h2>Sol: <%= results.sol %></h2>
-     <h2>Earth Date: <%= results.date %></h2>
-     <h2>Camera Name: <%= results.camera %></h2>
+     </div>
+     <h2 class="roverPicInfo"><strong>Rover Name:</strong> <%= results.name %></h2>
+     <h2 class="roverPicInfo"><strong>Sol:</strong> <%= results.sol %></h2>
+     <h2 class="roverPicInfo"><strong>Earth Date:</strong> <%= results.date %></h2>
+     <h2 class="roverPicInfo"><strong>Camera Name:</strong> <%= results.camera %></h2>
     </div>
     <form action="/delete/<%=results.id%>?_method=DELETE" method="post">
+     <div class="favRoverButt">
       <button>Remove From Favorites</button>
+     </div>
     </form>
   <% }) %>
 </body>
