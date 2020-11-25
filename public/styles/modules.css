@@ -3,7 +3,6 @@
   background-color: #532217;
   background-size: cover;
 }
-
 .roverPicsHome, .imageOfTheDay {
   display: flex;
   flex-direction: column;
@@ -16,39 +15,51 @@
   width: 800px;
   border: 7px solid #021a40;
 }
-
 #weatherBack {
   background: url('/images/Marsweather.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 45vw;
+  height: 70vw;
   width: 95%;
   margin: 0px auto;
+  margin-bottom: 1em;
   border: .7em solid rgb(92, 41, 0);
+  overflow-y: auto;
 }
-
 /* Buttons */
-
-.randomize {
+.randomize, .favRoverButt, .moreInfo {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2em;
-  margin-top: 2em;
+  margin-bottom: 1em;
+  margin-top: 1em;
   margin-right: 20px;
 }
-
+.favRoverButt {
+  margin-bottom: 3em;
+}
+.infoLink {
+  color:black;
+}
 .addFavButton {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 2em;
 }
-
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+  padding: 7px;
+}
+button:hover {
+  background-color: coral;
+}
 /* Weather Page */ 
-
 #weatherBlock {
   display: flex;
   justify-content: center;
@@ -57,12 +68,11 @@
   text-align: center;
   border: .3em solid black;
   padding: 1em;
-  margin-top: 18vw;
+  margin-top: 30vw;
   color: yellow;
   text-shadow: rgb(22, 21, 21) 0px 0px 10px;
   opacity: 1;
 }
-
 #allWeatherBlocks {
   display: flex;
   justify-content: center;
@@ -75,8 +85,11 @@
   align-content: center;
   align-items: center;
   margin: 0 auto;
-  margin-bottom: 2em;
   width: 800px;
   border: 7px solid #021a40;
+}
+.imgContain {
+  border: 7px solid #021a40;
+  margin-bottom: 1em;
 }
 
